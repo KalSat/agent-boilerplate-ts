@@ -12,3 +12,6 @@ dist
 .env
 .ipynb_checkpoints
 
+.DS_Store
+.vscode
+.idea

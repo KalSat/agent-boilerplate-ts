@@ -9,9 +9,10 @@
  * - Human-in-the-loop workflows
  */
 
-import { createAgent } from "langchain";
-import { TOOLS } from "./tools.js";
-import { SYSTEM_PROMPT } from "./prompts.js";
+import {createAgent} from "langchain";
+import {TOOLS} from "./tools.js";
+import {SYSTEM_PROMPT} from "./prompts.js";
+import {qwen25InstructLlm} from "./llms";
 
 /**
  * The main agent instance.
@@ -31,24 +32,23 @@ import { SYSTEM_PROMPT } from "./prompts.js";
  * ```
  */
 export const agent = createAgent({
-  // The model to use - supports "provider:model" format
-  // Uses ANTHROPIC_API_KEY or OPENAI_API_KEY from environment
-  model: "anthropic:claude-haiku-4-5",
+    // The model to use - supports "provider:model" format
+    model: qwen25InstructLlm,
 
-  // Tools available to the agent
-  tools: TOOLS,
+    // Tools available to the agent
+    tools: TOOLS,
 
-  // System prompt defining agent behavior
-  systemPrompt: SYSTEM_PROMPT,
+    // System prompt defining agent behavior
+    systemPrompt: SYSTEM_PROMPT,
 
-  // Optional: Add middleware for advanced customization
-  // middleware: [
-  //   summarizationMiddleware({
-  //     model: "anthropic:claude-haiku-4-5",
-  //     trigger: { tokens: 4000 },
-  //   }),
-  //   humanInTheLoopMiddleware({
-  //     interruptOn: { sensitive_tool: { allowedDecisions: ["approve", "reject"] } },
-  //   }),
-  // ],
+    // Optional: Add middleware for advanced customization
+    // middleware: [
+    //   summarizationMiddleware({
+    //     model: "anthropic:claude-haiku-4-5",
+    //     trigger: { tokens: 4000 },
+    //   }),
+    //   humanInTheLoopMiddleware({
+    //     interruptOn: { sensitive_tool: { allowedDecisions: ["approve", "reject"] } },
+    //   }),
+    // ],
 });

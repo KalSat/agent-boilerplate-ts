@@ -17,23 +17,23 @@ console.log("  • Search the knowledge base\n");
 
 // Example conversation
 const questions = [
-  "What time is it right now?",
-  "What's the weather like in San Francisco?",
-  "Calculate 42 * 17 + 100",
+    "What time is it right now?",
+    "What's the weather like in San Francisco?",
+    "Calculate 42 * 17 + 100",
 ];
 
 for (const question of questions) {
-  console.log(`📝 User: ${question}\n`);
+    console.log(`📝 User: ${question}\n`);
 
-  try {
-    const result = await agent.invoke({
-      messages: [{ role: "user", content: question }],
-    });
+    try {
+        const result = await agent.invoke({
+            messages: [{ role: "user", content: question }],
+        });
 
-    // The result contains the agent's response
-    console.log(`🤖 Agent: ${result.messages.at(-1)?.content}\n`);
-    console.log("─".repeat(50) + "\n");
-  } catch (error) {
-    console.error("Error:", error);
-  }
+        // The result contains the agent's response
+        console.log(`🤖 Agent: ${result.messages.at(-1)?.content}\n`);
+        console.log("─".repeat(50) + "\n");
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
