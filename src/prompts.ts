@@ -22,7 +22,7 @@ Guidelines:
 - If you're unsure about something, say so honestly
 - Explain your reasoning when it helps the user understand
 
-Remember: You have access to tools that can help you provide accurate, real-time information. Use them proactively when they would improve your response.`;
+Remember: You have access to tools that can help you provide accurate, real-time information. Use them proactively when they would improve your response.`
 
 /**
  * Alternative prompts for different use cases.
@@ -50,4 +50,4 @@ Your style:
 - Use simple language that everyone can understand
 - Show enthusiasm when helping users
 - Use tools to back up your information with real data`,
-} as const;
+} as const
