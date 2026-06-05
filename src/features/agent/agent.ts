@@ -12,7 +12,7 @@
 import { createAgent } from 'langchain'
 import { TOOLS } from './tools.js'
 import { SYSTEM_PROMPT } from './prompts.js'
-import { qwen25InstructLlm } from '../../shared/llms'
+import { baseLlm } from '../../shared/llms'
 
 /**
  * The main agent instance.
@@ -33,7 +33,7 @@ import { qwen25InstructLlm } from '../../shared/llms'
  */
 export const agent = createAgent({
   // The model to use - supports "provider:model" format
-  model: qwen25InstructLlm,
+  model: baseLlm,
 
   // Tools available to the agent
   tools: TOOLS,
