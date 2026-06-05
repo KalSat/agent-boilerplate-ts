@@ -1,35 +1,43 @@
-/**
- * LangChain Agent - Entry Point
- *
- * This file provides a simple CLI interface for testing the agent locally.
- * Run with: pnpm start
- */
+import * as readline from 'node:readline/promises'
+import { stdin as input, stdout as output } from 'node:process'
+import { testStructuredOutput } from './structured/testStructuredOutput'
+import { testChatbot } from './chatbot/testChatbot'
 
-import 'dotenv/config'
-import { agent } from './agent.js'
+const options: (() => Promise<void>)[] = [testStructuredOutput, testChatbot]
 
-console.log('🤖 LangChain Agent Started\n')
-console.log('Ask me anything! I can:')
-console.log('  • Perform calculations')
-console.log('  • Tell you the current time')
-console.log('  • Check the weather (simulated)')
-console.log('  • Search the knowledge base\n')
+async function main() {
+  const readlineInterface = readline.createInterface({ input, output })
 
-// Example conversation
-const questions = ['What time is it right now?', "What's the weather like in San Francisco?", 'Calculate 42 * 17 + 100']
-
-for (const question of questions) {
-  console.log(`📝 User: ${question}\n`)
+  console.log('Select an option by number:')
+  options.forEach((func, index) => {
+    console.log(`${index + 1}. ${func.name}`)
+  })
 
   try {
-    const result = await agent.invoke({
-      messages: [{ role: 'user', content: question }],
-    })
+    const answer = await readlineInterface.question('Enter choice: ')
+    const choice = answer.trim()
 
-    // The result contains the agent's response
-    console.log(`🤖 Agent: ${result.messages.at(-1)?.content}\n`)
-    console.log('─'.repeat(50) + '\n')
+    if (!/^\d+$/.test(choice)) {
+      console.log('Invalid selection.')
+      return
+    }
+
+    const idx = parseInt(choice, 10)
+    if (idx < 1 || idx > options.length) {
+      console.log('Invalid selection.')
+      return
+    }
+
+    const func = options[idx - 1]
+
+    readlineInterface.close()
+    console.log(`Running ${func.name}...\n`)
+    await func()
   } catch (error) {
-    console.error('Error:', error)
+    console.error('An error occurred:', error)
+  } finally {
+    readlineInterface.close()
   }
 }
+
+main().catch((err) => console.error(err))
