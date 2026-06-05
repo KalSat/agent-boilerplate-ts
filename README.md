@@ -17,11 +17,9 @@ A modern starter template for building agentic applications using **LangChain** 
 
 ## 🚀 Quick Start
 
-### 1. Clone and Install
+### 1. Install Dependencies
 
 ```bash
-git clone https://github.com/langchain-ai/react-agent-js.git
-cd react-agent-js
 pnpm install
 ```
 
@@ -55,10 +53,22 @@ pnpm start
 
 ```txt
 src/
-├── agent.ts      # Main agent using createAgent
-├── tools.ts      # Tool definitions with Zod schemas
-├── prompts.ts    # System prompts and templates
-└── index.ts      # CLI entry point for testing
+├── features/
+│   ├── agent/
+│   │   ├── agent.ts      # Main agent using createAgent
+│   │   ├── prompts.ts    # System prompts and templates
+│   │   └── tools.ts      # Tool definitions with Zod schemas
+│   ├── chatbot/
+│   │   └── index.ts      # Chatbot feature entry point
+│   └── structuredOutput/
+│       ├── index.ts      # Structured output feature entry point
+│       └── models.ts     # Output model definitions
+├── shared/
+│   ├── config.ts         # Shared configuration
+│   └── llms.ts           # LLM client setup
+├── utils/
+│   └── timeUtil.ts       # Utility functions
+└── index.ts              # CLI entry point for testing
 ```
 
 ## 🛠 Customizing Your Agent

@@ -12,7 +12,7 @@
 import { createAgent } from 'langchain'
 import { TOOLS } from './tools.js'
 import { SYSTEM_PROMPT } from './prompts.js'
-import { qwen25InstructLlm } from './llms'
+import { qwen25InstructLlm } from '../../shared/llms'
 
 /**
  * The main agent instance.

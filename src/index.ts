@@ -1,7 +1,7 @@
 import * as readline from 'node:readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
-import { testStructuredOutput } from './structured/testStructuredOutput'
-import { testChatbot } from './chatbot/testChatbot'
+import { testStructuredOutput } from './features/structuredOutput'
+import { testChatbot } from './features/chatbot'
 
 const options: (() => Promise<void>)[] = [testStructuredOutput, testChatbot]
 

@@ -1,4 +1,4 @@
-import { qwen25InstructLlm } from '../llms'
+import { qwen25InstructLlm } from '../../shared/llms'
 import { Movie, movieSchema } from './models'
 import { HumanMessage } from '@langchain/core/messages'
 

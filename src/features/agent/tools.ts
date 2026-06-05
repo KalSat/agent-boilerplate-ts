@@ -8,6 +8,7 @@
 
 import { tool } from 'langchain'
 import { z } from 'zod'
+import { getTime } from '../../utils/timeUtil'
 
 /**
  * A simple calculator tool that can perform basic arithmetic operations.
@@ -44,26 +45,11 @@ export const calculator = tool(
 /**
  * A tool that returns the current date and time.
  */
-export const getCurrentTime = tool(
-  async () => {
-    const now = new Date()
-    return `Current date and time: ${now.toLocaleString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZoneName: 'short',
-    })}`
-  },
-  {
-    name: 'get_current_time',
-    description: 'Get the current date and time. Use this when the user asks about the current time or date.',
-    schema: z.object({}),
-  },
-)
+export const getCurrentTime = tool(getTime, {
+  name: 'get_current_time',
+  description: 'Get the current date and time. Use this when the user asks about the current time or date.',
+  schema: z.object({}),
+})
 
 /**
  * A tool that simulates fetching weather data for a given location.
