@@ -51,24 +51,29 @@ pnpm start
 
 ## 📁 Project Structure
 
-```txt
+```yaml
 src/
 ├── features/
-│   ├── agent/
-│   │   ├── agent.ts      # Main agent using createAgent
-│   │   ├── prompts.ts    # System prompts and templates
-│   │   └── tools.ts      # Tool definitions with Zod schemas
+│   ├── calculator/
+│   │   ├── agent.ts             # Calculator agent using createAgent
+│   │   ├── calculator.ts        # Calculator feature runner
+│   │   ├── index.ts             # Calculator feature entry point
+│   │   ├── prompts.ts           # Calculator system prompt
+│   │   └── tools.ts             # Math tool definitions (add, subtract, etc.)
 │   ├── chatbot/
-│   │   └── index.ts      # Chatbot feature entry point
+│   │   ├── chatbot.ts           # Interactive chatbot logic
+│   │   ├── index.ts             # Chatbot feature entry point
+│   │   └── prompts.ts           # Chatbot prompt templates
 │   └── structuredOutput/
-│       ├── index.ts      # Structured output feature entry point
-│       └── models.ts     # Output model definitions
+│       ├── index.ts             # Structured output feature entry point
+│       ├── models.ts            # Output model definitions (Zod schemas)
+│       └── structuredOutput.ts  # Structured output runner
 ├── shared/
-│   ├── config.ts         # Shared configuration
-│   └── llms.ts           # LLM client setup
+│   ├── config.ts                # Shared configuration
+│   └── llms.ts                  # LLM client setup
 ├── utils/
-│   └── timeUtil.ts       # Utility functions
-└── index.ts              # CLI entry point for testing
+│   └── timeUtil.ts              # Utility functions
+└── main.ts                      # CLI entry point for testing
 ```
 
 ## 🛠 Customizing Your Agent
